@@ -1,5 +1,16 @@
+
+import java.util.Scanner;
+
 public class App {
     public static void main(String[] args) throws Exception {
-        System.out.println("Hello, World!");
+        Scanner leia = new Scanner(System.in);
+        BinarySearchTree<Integer> arvore = new BinarySearchTree<>(); 
+        for(int i=0;i<5;i++){
+            System.out.println("Valor:");
+            arvore.add(leia.nextInt());
+        }
+        // mostrar o preOrdem da arvore
+        System.out.println("Preorder:");
+        arvore.preOrder();
     }
 }
