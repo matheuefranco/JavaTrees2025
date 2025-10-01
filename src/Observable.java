@@ -11,19 +11,19 @@ public abstract class Observable<T> {
         this.observer=null;
     }
     
-    protected void notificaCompacao() {
+    protected void notificarCompacao() {
         if(this.observer!=null) {
             this.comparisonCount++;
         }
     }
 
-    protected void nofiticaConclusao() {
+    protected void notificarConclusao() {
         if(this.observer!=null) {
             this.observer.totalComparacao(comparisonCount);
         }
     }
     
-    protected void notificaPercurso(String operation, T dado) {
+    protected void notificarPercurso(String operation, T dado) {
         if(this.observer!=null) 
             observer.noPercurso(operation, dado);
         
