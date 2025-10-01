@@ -18,9 +18,12 @@ public class BinarySearchTree<T extends Comparable<T>>  {
             return raiz;
         }
 
-        public void add(T novoDado){
+        public boolean  add(T novoDado){
             Node<T> novoNo = new Node(novoDado);
+            if(novoNo == null)
+                return false;
             this.raiz = add(this.raiz, novoNo);
+            return true;
         }
 
         private void preOrder(Node<T> raiz){
@@ -33,6 +36,30 @@ public class BinarySearchTree<T extends Comparable<T>>  {
 
         public void preOrder(){
             preOrder(this.raiz);
+        }
+
+        private void inOrder(Node<T> raiz){
+            if(raiz!=null){
+                inOrder(raiz.esquerda);
+                System.out.print(raiz.dado+" - ");
+                inOrder(raiz.direita);
+            }
+        }
+
+        public void inOrder(){
+            inOrder(this.raiz);
+        }
+
+        private void postOrder(Node<T> raiz){
+            if(raiz!=null){
+                postOrder(raiz.esquerda);
+                postOrder(raiz.direita);
+               System.out.print(raiz.dado+" - ");
+            }
+        }
+
+        public void postOrder(){
+            postOrder(this.raiz);
         }
 
     
