@@ -3,8 +3,6 @@ public abstract class Observable<T> {
     protected TreeObserver observer;
     protected int comparisonCount;
     
-    
-    // Métodos para gerenciar observers
     public void setObserver(TreeObserver newObserver) {
         this.observer = newObserver;
     }

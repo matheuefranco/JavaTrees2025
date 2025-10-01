@@ -1,5 +1,5 @@
 
-public class BinarySearchTree<T extends Comparable<T>> {
+public class BinarySearchTree<T extends Comparable<T>>  {
         private Node<T> raiz;
 
         public BinarySearchTree(){
@@ -10,7 +10,6 @@ public class BinarySearchTree<T extends Comparable<T>> {
         private Node<T> add(Node<T> raiz, Node<T> novoNo){
             if(raiz==null)
                 return novoNo;
-            
             if(novoNo.dado.compareTo(raiz.dado)<0) 
                 raiz.esquerda = add(raiz.esquerda, novoNo);
             else
