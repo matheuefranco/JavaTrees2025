@@ -21,7 +21,7 @@ public class Pessoa implements Comparable<Pessoa> {
 
     @Override
     public String toString(){
-        return this.nome +" - " +this.matricula;
+        return "|" +this.matricula+ "-" + this.nome + "|";
     }
     
 

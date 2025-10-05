@@ -1,6 +1,28 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class App {
+
+    static  void carregarArquivo(BinarySearchTree tree, String csvFile){
+        String line = "";
+        String[] leitura = null;
+        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
+            while ((line = br.readLine()) != null) {
+                Pessoa p = new Pessoa();
+                leitura = line.split(",");
+                System.out.println(leitura[0]+" " + leitura[1]);
+                p.setMatricula(Integer.parseInt(leitura[0]));
+                p.setNome(leitura[1]);
+                tree.add(p); 
+            }// fim percurso no arquivo
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     static int menu(){
         Scanner leia = new Scanner(System.in);
@@ -18,13 +40,17 @@ public class App {
     public static void main(String[] args) throws Exception {
         Scanner leia = new Scanner(System.in);
         Pessoa novoDado;
-        BinarySearchTree<Integer> arvore = new BinarySearchTree<>(); 
+        BinarySearchTree<Pessoa> arvore = new BinarySearchTree<>(); 
         int op;
         do{
             op = menu();
             switch(op){
                 case 1: System.out.println("Dado para inserir:");
-                        //novoDado = leia.nextInt(); alterar
+                        novoDado = new Pessoa();
+                        System.out.println("Matricula:");
+                        novoDado.setMatricula(leia.nextInt());
+                        System.out.println("Nome:");
+                        novoDado.setNome(leia.next());
                         arvore.add(novoDado);
                 break;
                 case 2: System.out.println("PreOrdem:");
@@ -34,8 +60,15 @@ public class App {
                         System.out.println("\nPostOrdem:");
                         arvore.postOrder();
                 break;
+                        case 4: System.out.println("Carregando arquivo:");
+                        String csvFile = "dados.csv";
+                        carregarArquivo(arvore, csvFile);
+                break;
+
                 case 0: System.out.println("Saindo");
                 break;
+
+
             }// fim switch
             System.out.println("Pressione uma tecla para continuar");
             leia.nextLine();// pausa
