@@ -60,7 +60,16 @@ public class App {
                         System.out.println("\nPostOrdem:");
                         arvore.postOrder();
                 break;
-                        case 4: System.out.println("Carregando arquivo:");
+                case 3: System.out.println("Matricula para busca:");
+                        Pessoa dadoBusca = new Pessoa();
+                        dadoBusca.setMatricula(leia.nextInt());
+                        novoDado = arvore.search(dadoBusca);
+                        if(novoDado == null)
+                            System.out.println("Dado nao encontrado");
+                        else
+                            System.out.println("Dado encontrado:"+novoDado);
+                        break;   
+                case 4: System.out.println("Carregando arquivo:");
                         String csvFile = "dados.csv";
                         carregarArquivo(arvore, csvFile);
                 break;
