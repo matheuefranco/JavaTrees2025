@@ -20,6 +20,7 @@ public abstract class Observable<T> {
     protected void notificarConclusao() {
         if(this.observer!=null) {
             this.observer.totalComparacao(comparisonCount);
+            resetComparisonCount();
         }
     }
     

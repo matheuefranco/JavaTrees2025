@@ -1,5 +1,5 @@
 
-public class BinarySearchTree<T extends Comparable<T>>  {
+public class BinarySearchTree<T extends Comparable<T>> extends Observable<T>  {
         private Node<T> raiz;
 
         public BinarySearchTree(){
@@ -62,10 +62,13 @@ public class BinarySearchTree<T extends Comparable<T>>  {
         }
 
         public T search(T dadodeBusca){
-            return search(this.raiz, dadodeBusca);
+            T dado =  search(this.raiz, dadodeBusca);
+            notificarConclusao();
+            return  dado;
         }
 
         private T search(Node<T> raiz, T dadodeBusca){
+            notificarCompacao();// comparador do observable
             if(raiz==null)
                 return null; // objeto nao existe na arvore
             if(dadodeBusca.equals(raiz.dado))

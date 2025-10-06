@@ -41,6 +41,8 @@ public class App {
         Scanner leia = new Scanner(System.in);
         Pessoa novoDado;
         BinarySearchTree<Pessoa> arvore = new BinarySearchTree<>(); 
+        TreeObserver observer = new TreeObserver();
+        arvore.setObserver(observer);
         int op;
         do{
             op = menu();
