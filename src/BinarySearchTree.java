@@ -3,7 +3,6 @@ public class BinarySearchTree<T extends Comparable<T>>  {
         private Node<T> raiz;
 
         public BinarySearchTree(){
-           
             this.raiz=null;
         }
 
@@ -60,6 +59,21 @@ public class BinarySearchTree<T extends Comparable<T>>  {
 
         public void postOrder(){
             postOrder(this.raiz);
+        }
+
+        public T search(T dadodeBusca){
+            return search(this.raiz, dadodeBusca);
+        }
+
+        private T search(Node<T> raiz, T dadodeBusca){
+            if(raiz==null)
+                return null; // objeto nao existe na arvore
+            if(dadodeBusca.equals(raiz.dado))
+                return raiz.dado;                
+            if(dadodeBusca.compareTo(raiz.dado)<0)
+                return search(raiz.esquerda, dadodeBusca);
+            else
+                return search(raiz.direita, dadodeBusca);    
         }
 
     
