@@ -75,7 +75,11 @@ public class App {
                         String csvFile = "dados.csv";
                         carregarArquivo(arvore, csvFile);
                 break;
-
+                case 5: System.out.println("Matricula para remover:");
+                        Pessoa dadoRemove = new Pessoa();
+                        dadoRemove.setMatricula(leia.nextInt());
+                        arvore.remove(dadoRemove);
+                break;        
                 case 0: System.out.println("Saindo");
                 break;
 
