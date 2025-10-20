@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class App {
 
-    static  void carregarArquivo(BinarySearchTree tree, String csvFile){
+    static  void carregarArquivo(AvlTree tree, String csvFile){
         String line = "";
         String[] leitura = null;
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
@@ -40,9 +40,9 @@ public class App {
     public static void main(String[] args) throws Exception {
         Scanner leia = new Scanner(System.in);
         Pessoa novoDado;
-        BinarySearchTree<Pessoa> arvore = new BinarySearchTree<>(); 
-        TreeObserver observer = new TreeObserver();
-        arvore.setObserver(observer);
+        AvlTree<Pessoa> arvore = new AvlTree<>(); 
+        //TreeObserver observer = new TreeObserver();
+        //arvore.setObserver(observer);
         int op;
         do{
             op = menu();
