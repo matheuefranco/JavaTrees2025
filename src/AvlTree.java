@@ -18,6 +18,15 @@ public class AvlTree<T extends Comparable<T>> extends Observable<T>  {
                 return altEsq + 1;
         }// fim funcao altura
 
+        private Node<T> rotacaoEsquerda(Node<T> raiz){
+            Node<T> nova = raiz.direita;
+            raiz.direita = nova.esquerda;
+            nova.esquerda = raiz;
+            raiz.fb = altura(raiz.direita) - altura(raiz.esquerda);
+            nova.fb = altura(nova.direita) - altura(nova.esquerda);
+            return nova;
+        }
+
 
         private Node<T> add(Node<T> raiz, Node<T> novoNo){
             if(raiz==null)
@@ -28,6 +37,8 @@ public class AvlTree<T extends Comparable<T>> extends Observable<T>  {
                 raiz.direita = add(raiz.direita, novoNo);
 
             raiz.fb = altura(raiz.direita)- altura(raiz.esquerda);
+            if(raiz.fb==-2)
+                raiz = rotacaoEsquerda(raiz);
             return raiz;
         }
 
