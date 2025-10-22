@@ -24,6 +24,7 @@ public class AvlTree<T extends Comparable<T>> extends Observable<T>  {
             nova.esquerda = raiz;
             raiz.fb = altura(raiz.direita) - altura(raiz.esquerda);
             nova.fb = altura(nova.direita) - altura(nova.esquerda);
+            System.out.println("<-- Rotacao Esquerda");
             return nova;
         }
         private Node<T> rotacaoDireita(Node<T> raiz){
@@ -32,6 +33,7 @@ public class AvlTree<T extends Comparable<T>> extends Observable<T>  {
             nova.direita = raiz;
             raiz.fb = altura(raiz.direita) - altura(raiz.esquerda);
             nova.fb = altura(nova.direita) - altura(nova.esquerda);
+            System.out.println("Rotacao Direita -->");
             return nova;
         }
 
@@ -45,11 +47,24 @@ public class AvlTree<T extends Comparable<T>> extends Observable<T>  {
                 raiz.direita = add(raiz.direita, novoNo);
 
             raiz.fb = altura(raiz.direita)- altura(raiz.esquerda);
-            if(raiz.fb==2)
-                raiz = rotacaoEsquerda(raiz);
+            if(raiz.fb==2){
+                if(raiz.direita.fb >=0)
+                   raiz = rotacaoEsquerda(raiz); // simples
+                else // rotacao dupla para esquerda
+                    {
+                        raiz.direita = rotacaoDireita(raiz.direita);
+                        raiz = rotacaoEsquerda(raiz);
+                    }   
+                }// if da rotacao para esquerda
             else 
-                if(raiz.fb == -2)
-                 raiz = rotacaoDireita(raiz);    
+                if(raiz.fb == -2){
+                 if(raiz.esquerda.fb<=0)    // simples
+                    raiz = rotacaoDireita(raiz);   
+                 else{ // dupla
+                    raiz.esquerda = rotacaoEsquerda(raiz.esquerda);
+                    raiz = rotacaoDireita(raiz);
+                 }
+                 } // fim if rotacao direita 
             return raiz;
         }
 
