@@ -171,7 +171,25 @@ public class AvlTree<T extends Comparable<T>> extends Observable<T>  {
         else
             raiz.direita = remove(raiz.direita,dadoRemover);
         
-        raiz.fb = altura(raiz.direita)- altura(raiz.esquerda);// atualiza o FB
+        raiz.fb = altura(raiz.direita)- altura(raiz.esquerda);
+            if(raiz.fb==2){
+                if(raiz.direita.fb >=0)
+                   raiz = rotacaoEsquerda(raiz); // simples
+                else // rotacao dupla para esquerda
+                    {
+                        raiz.direita = rotacaoDireita(raiz.direita);
+                        raiz = rotacaoEsquerda(raiz);
+                    }   
+                }// if da rotacao para esquerda
+            else 
+                if(raiz.fb == -2){
+                 if(raiz.esquerda.fb<=0)    // simples
+                    raiz = rotacaoDireita(raiz);   
+                 else{ // dupla
+                    raiz.esquerda = rotacaoEsquerda(raiz.esquerda);
+                    raiz = rotacaoDireita(raiz);
+                 }
+                 } // fim if rotacao direita 
         return raiz;
     }// fim buscaRemove
 
