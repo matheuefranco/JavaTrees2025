@@ -26,6 +26,14 @@ public class AvlTree<T extends Comparable<T>> extends Observable<T>  {
             nova.fb = altura(nova.direita) - altura(nova.esquerda);
             return nova;
         }
+        private Node<T> rotacaoDireita(Node<T> raiz){
+            Node<T> nova = raiz.esquerda;
+            raiz.esquerda = nova.direita;
+            nova.direita = raiz;
+            raiz.fb = altura(raiz.direita) - altura(raiz.esquerda);
+            nova.fb = altura(nova.direita) - altura(nova.esquerda);
+            return nova;
+        }
 
 
         private Node<T> add(Node<T> raiz, Node<T> novoNo){
@@ -37,8 +45,11 @@ public class AvlTree<T extends Comparable<T>> extends Observable<T>  {
                 raiz.direita = add(raiz.direita, novoNo);
 
             raiz.fb = altura(raiz.direita)- altura(raiz.esquerda);
-            if(raiz.fb==-2)
+            if(raiz.fb==2)
                 raiz = rotacaoEsquerda(raiz);
+            else 
+                if(raiz.fb == -2)
+                 raiz = rotacaoDireita(raiz);    
             return raiz;
         }
 
