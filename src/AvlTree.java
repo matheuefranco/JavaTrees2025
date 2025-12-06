@@ -24,7 +24,7 @@ public class AvlTree<T extends Comparable<T>> extends Observable<T>  {
             nova.esquerda = raiz;
             raiz.fb = altura(raiz.direita) - altura(raiz.esquerda);
             nova.fb = altura(nova.direita) - altura(nova.esquerda);
-            System.out.println("<-- Rotacao Esquerda");
+            System.out.println("<-- Rotacao Esquerda ");
             return nova;
         }
         private Node<T> rotacaoDireita(Node<T> raiz){
